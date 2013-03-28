@@ -54,7 +54,7 @@ end
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.init(config_dir .. "theme/kure-theme.lua")
 
-terminal   = "terminator"     -- was "x-terminal-emulator"
+terminal   = "mrxvt"          -- was "x-terminal-emulator"
 editor     = "emacs -nw"      -- was os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 modkey     = "Mod4"
