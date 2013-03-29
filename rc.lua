@@ -27,8 +27,8 @@ config_dir = awful.util.getdir("config") .. "/"
 
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
+                     title  = "Oops, there were errors during startup!",
+                     text   = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
@@ -40,8 +40,8 @@ do
         in_error = true
 
         naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = err })
+                         title  = "Oops, an error happened!",
+                         text   = err })
         in_error = false
     end)
 end
@@ -96,10 +96,10 @@ end
 
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "awesome manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
+   { "awesome manual", terminal   .. " -e man awesome" },
+   { "edit config",    editor_cmd .. " " .. awesome.conffile },
+   { "restart",        awesome.restart },
+   { "quit",           awesome.quit }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -112,9 +112,10 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 -- }}}
 
+dofile(config_dir .. "widgets/battery.lua")   -- batterywidget
+dofile(config_dir .. "widgets/textclock.lua") -- mytextclock
+
 -- {{{ Wibox
--- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -185,19 +186,26 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
+
+    --
     -- Add widgets to the wibox - order matters
+    --
     mywibox[s].widgets = {
-        {
-            mylauncher,
-            mytaglist[s],
-            mypromptbox[s],
-            layout = awful.widget.layout.horizontal.leftright
-        },
-        mylayoutbox[s],
-        mytextclock,
-        s == 1 and mysystray or nil,
-        mytasklist[s],
-        layout = awful.widget.layout.horizontal.rightleft
+       -- left to right
+       {
+          mylauncher,
+          mytaglist[s],
+          mypromptbox[s],
+          layout = awful.widget.layout.horizontal.leftright
+       },
+       -- right to left
+       -- mylayoutbox[s], -- I don't need no layout boxes
+       mytextclock,
+       batterywidget,
+
+       s == 1 and mysystray or nil,
+       mytasklist[s],
+       layout = awful.widget.layout.horizontal.rightleft
     }
 end
 -- }}}

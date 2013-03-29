@@ -6,7 +6,7 @@ icons_dir  = "/home/kure/.config/awesome/theme/icons/"
 
 theme = {}
 
-theme.font = "monospaced 8"
+theme.font = "Monospaced 8"
 
 theme.bg_normal     = "#01050D"
 theme.bg_focus      = "#0E234F" -- taskbar
@@ -46,9 +46,9 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = icons_dir .. "arrow-right.png"
-theme.menu_height       = "15"
+theme.menu_height       = "18"
 theme.menu_width        = "150"
-theme.menu_border_width = "1"
+theme.menu_border_width = "3"
 
 -- You can add as many variables as
 -- you wish and access them by using
