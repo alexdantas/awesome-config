@@ -114,6 +114,7 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 dofile(config_dir .. "widgets/battery.lua")   -- batterywidget
 dofile(config_dir .. "widgets/textclock.lua") -- mytextclock
+--dofile(config_dir .. "widgets/cpufreq.lua")   -- fraxcpu Y U NO WORK
 
 -- {{{ Wibox
 
@@ -168,6 +169,7 @@ mytasklist.buttons = awful.util.table.join(
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
@@ -176,6 +178,7 @@ for s = 1, screen.count() do
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
 
@@ -184,8 +187,8 @@ for s = 1, screen.count() do
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
 
-    -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    -- Create the wibox, statusbar
+    mywibox[s] = awful.wibox({ position = "bottom", height = "18", screen = s })
 
     --
     -- Add widgets to the wibox - order matters
@@ -274,6 +277,10 @@ end)
 
 client.add_signal("focus",   function(c) c.border_color = beautiful.border_focus  end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- }}}
+
+-- {{{ Timers
 
 -- }}}
 

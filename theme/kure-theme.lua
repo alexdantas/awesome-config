@@ -1,6 +1,7 @@
 -- kure theme based on the Default awesome theme
 
 -- myvars
+theme_dir  =  "/home/kure/.config/awesome/theme/"
 icons_dir  = "/home/kure/.config/awesome/theme/icons/"
 -- /myvars
 
@@ -19,8 +20,8 @@ theme.fg_urgent     = "#DC8D84"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = "1"
-theme.border_normal = "#000000"
-theme.border_focus  = "#111B60"
+theme.border_normal = "#01050D"
+theme.border_focus  = "#01050D"
 theme.border_marked = "#8b0000"
 
 -- There are other variable sets
@@ -75,7 +76,8 @@ theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/defaul
 theme.titlebar_floating_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/floating_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
+--theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
+theme.wallpaper_cmd = { "awsetbg "..theme_dir.."bg.png"}
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
