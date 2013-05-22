@@ -12,6 +12,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
+
     -- Previous window
     awful.key({ modkey,           }, "p",
         function ()
@@ -37,7 +38,9 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+
+-- I never use this shortcut anyways, let's avoid hitting it by accident
+--    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -53,23 +56,38 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end)
+    -- I've never needed this
+    -- awful.key({ modkey }, "x",
+    --           function ()
+    --               awful.prompt.run({ prompt = "Run Lua code: " },
+    --               mypromptbox[mouse.screen].widget,
+    --               awful.util.eval, nil,
+    --               awful.util.getdir("cache") .. "/history_eval")
+    --           end),
+
+    -- Print screen key saves screenshots through scrot on ~/screenshots
+    awful.key({ }, "Print", function () awful.util.spawn("scrot 'screen-%F-%T.png' -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
+
+    -- Mod+Print screen saves current window
+    awful.key({ modkey, }, "Print", function () awful.util.spawn("scrot 'window-%F-%T.png' -u -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
+
+    -- Locks screen on Pause, with xscreensaver
+    awful.key({ }, "Pause", function () awful.util.spawn("xscreensaver-command -lock") end)
+
+    -- Let's do something with the Menu key
+--    awful.key({ }, "Menu", function () awful.util.spawn("xscreensaver-command -lock") end)
+
 )
 
 clientkeys = awful.util.table.join (
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey,           }, "F4",      function (c) c:kill()                         end),
+    awful.key({ modkey,           }, "F4",     function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
+
     -- Minimize window
     awful.key({ modkey,           }, "-",
         function (c)
@@ -77,7 +95,8 @@ clientkeys = awful.util.table.join (
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end),
-    -- Maximize window ('Shift' and '=' equals '+')
+
+    -- Maximize window ('Shift' plus '=' equals '+')
     awful.key({ modkey, "Shift"   }, "=",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal

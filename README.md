@@ -1,8 +1,10 @@
 
-These are my configuration files for `awesome`. I've splitted them
-over several files to ease modding.
+These are my configuration files for the `awesome` Window Manager. I've splitted
+them over several files to ease modding.
 
-For now it's a plain blue raw theme with minor modifications.
+Note that this works for `awesome 3.5`! Retrocompatibility was not possible.
+
+For now it's a plain dark gray theme with minor modifications.
 
 Installation
 ------------

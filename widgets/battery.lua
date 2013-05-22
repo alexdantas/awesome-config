@@ -4,10 +4,11 @@
 -- Don't forget to dofile() it and include this widget on the Wibox
 -- maybe later I'll try to do http://awesome.naquadah.org/wiki/Gigamo_Battery_Widget
 
-batterywidget      = widget({ type = "textbox" })
+--batterywidget      = widget({ type = "textbox" })
+batterywidget      = wibox.widget.textbox()
 batterywidget.text = "| XX% XX:XX:XX |"
 batterywidgettimer = timer({ timeout = 5 })
-batterywidgettimer:add_signal("timeout",
+batterywidgettimer:connect_signal("timeout",
                               function()
                                  --fh = assert(io.popen("acpi | cut -d, -f 2,3 -", "r"))
                                  fh = assert(io.popen("acpi | cut -d ' ' -f 4,5 | tr -d ','", "r"))
