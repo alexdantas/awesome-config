@@ -1,6 +1,8 @@
--- Standard awesome library
+-- Libraries
+-- {{{
 
-local gears = require("gears")
+vicious = require("vicious")
+gears = require("gears")
 
 awful = require("awful")
 awful.rules = require("awful.rules")
@@ -12,11 +14,13 @@ awful.autofocus = require("awful.autofocus")
 wibox = require("wibox")
 
 -- Theme handling library
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 
 -- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
+naughty = require("naughty")
+menubar = require("menubar")
+
+-- }}}
 
 -- My variable
 config_dir = "/home/kure/.config/awesome/"
@@ -129,12 +133,16 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 
--- CUSTOM WIDGETS
-dofile(config_dir .. "widgets/battery.lua")   -- batterywidget
+-- {{{ Custom Widgets
+
+blank_space = wibox.widget.textbox(" ")
+separator   = wibox.widget.textbox("|")
+
+dofile(config_dir .. "widgets/battery.lua")   -- batterywidget and batteryprogress
 dofile(config_dir .. "widgets/textclock.lua") -- mytextclock
+dofile(config_dir .. "widgets/cpu.lua")       -- cpuwidget
 
--- WIBOX
-
+-- }}}
 
 -- {{{ Wibox
 
@@ -222,6 +230,8 @@ for s = 1, screen.count() do
 
     -- MY CUSTOM WIDGEEETS
     right_layout:add(batterywidget)
+    right_layout:add(blank_space)
+    right_layout:add(cpuwidget)
     right_layout:add(mytextclock)
 
     -- Don't need them layout boxes!

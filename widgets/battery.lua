@@ -1,20 +1,34 @@
--- My modded version of Gizmoguy's super-easy acpi battery widgeta battery widget
--- source: http://awesome.naquadah.org/wiki/Gizmoguy's_super-easy_acpi_battery_widget
+-- Two battery widgets (taken from Vicious' default widget set)
+--  * batterywidget: Shows a string with battery info
+--  * batteryprogress: Shows a horizontal bar with battery usage
 --
--- Don't forget to dofile() it and include this widget on the Wibox
--- maybe later I'll try to do http://awesome.naquadah.org/wiki/Gigamo_Battery_Widget
+-- For more info about a Vicious widget, check
+-- http://git.sysphere.org/vicious/tree/README
+--
+-- Don't forget to dofile() this file and include this widget on the Wibox
 
---batterywidget      = widget({ type = "textbox" })
-batterywidget      = wibox.widget.textbox()
-batterywidget.text = "| XX% XX:XX:XX |"
-batterywidgettimer = timer({ timeout = 5 })
-batterywidgettimer:connect_signal("timeout",
-                              function()
-                                 --fh = assert(io.popen("acpi | cut -d, -f 2,3 -", "r"))
-                                 fh = assert(io.popen("acpi | cut -d ' ' -f 4,5 | tr -d ','", "r"))
-                                 --batterywidget.text = "|<span color='orange'> " .. fh:read("*l") .. " </span>|"
-                                 batterywidget.text = "| " .. fh:read("*l") .. " |"
-                                 fh:close()
-                              end)
-batterywidgettimer:start()
+batterywidget = wibox.widget.textbox()
+batterywidget.border_width = 1
+batterywidget.border_color = beautiful.fg_normal
+vicious.register(batterywidget,       -- widget table, created with widget()
+                 vicious.widgets.bat, -- available widget from vicious
+                 " <span color='orange'>$1 $2% ($3)</span> ",
+                 5,                   -- refresh interval (seconds)
+                 "BAT0")              -- optional argument, battery ID
+
+
+-- Battery widget
+batteryprogress = awful.widget.progressbar()
+batteryprogress:set_width(30)
+batteryprogress:set_height(5)
+batteryprogress:set_vertical(false)
+batteryprogress:set_background_color("#494B4F")
+batteryprogress:set_border_color(nil)
+batteryprogress:set_color("#AECF96")
+
+-- Y U NO WORK
+--batteryprogress:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
+
+vicious.register(batteryprogress, vicious.widgets.bat, "$2", 61, "BAT0")
+
 

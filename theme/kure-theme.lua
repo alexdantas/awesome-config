@@ -89,7 +89,9 @@ theme.titlebar_floating_button_focus_active	 = "/usr/share/awesome/themes/defaul
 
 -- You can use your own command to set your wallpaper
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
-theme.wallpaper_cmd = { "awsetbg "..theme_dir.."bg.png"}
+--theme.wallpaper_cmd = { "awsetbg "..theme_dir.."bg.png"}
+--theme.wallpaper_cmd = { "awsetbg "..theme_dir.."arch.png"}
+theme.wallpaper = "/home/kure/.config/awesome/theme/arch.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
