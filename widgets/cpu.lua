@@ -13,6 +13,7 @@ cpuwidget = awful.widget.graph()
 cpuwidget:set_width(30)
 cpuwidget:set_background_color("#494B4F")
 cpuwidget:set_color("#FF5656")
+cpuwidget:set_scale(true)
 
 -- Why doesn't this work on awesome 3.5?
 --cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })

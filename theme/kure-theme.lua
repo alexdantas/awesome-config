@@ -1,17 +1,19 @@
 -- kure theme based on the Default awesome theme
+-- Works only on Awesome 3.5!
 
--- myvars
+-- {{{ My Variables
+
 theme_dir  = "/home/kure/.config/awesome/theme/"
 icons_dir  = "/home/kure/.config/awesome/theme/icons/"
--- /myvars
 
+-- }}}
 theme = {}
 
 theme.font = "Monospaced 9"
 --theme.font = "Ubuntu Mono 8"
 
+-- {{{ Taskbar colors
 
--- Taskbar colors
 -- theme.bg_normal		= "#01050D"
 --theme.bg_normal		= "#404040"
 theme.bg_normal		= "#1c1c1c"
@@ -36,6 +38,8 @@ theme.border_normal = "#01050D"
 theme.border_focus	= "#01050D"
 theme.border_marked = "#8b0000"
 
+-- }}{
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -55,18 +59,22 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 -- Was ugly as fuark
 --theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/floatingw.png"
 
--- Menu
+-- {{{ Menu
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = icons_dir .. "arrow-right.png"
 theme.menu_height		= "18"
 theme.menu_width		= "150"
-theme.menu_border_width = "3"
+theme.menu_border_width = "1"
+
+-- }}}
 
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
+
+-- {{{ Titlebar
 
 -- Define the image to load
 theme.titlebar_close_button_normal = "/usr/share/awesome/themes/default/titlebar/close_normal.png"
@@ -87,11 +95,16 @@ theme.titlebar_floating_button_focus_inactive  = "/usr/share/awesome/themes/defa
 theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/default/titlebar/floating_normal_active.png"
 theme.titlebar_floating_button_focus_active	 = "/usr/share/awesome/themes/default/titlebar/floating_focus_active.png"
 
+-- }}}
+
+-- {{{ Wallpaper
 -- You can use your own command to set your wallpaper
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
 --theme.wallpaper_cmd = { "awsetbg "..theme_dir.."bg.png"}
 --theme.wallpaper_cmd = { "awsetbg "..theme_dir.."arch.png"}
 theme.wallpaper = "/home/kure/.config/awesome/theme/arch.png"
+
+-- }}}
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
