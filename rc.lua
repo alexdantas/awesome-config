@@ -1,3 +1,8 @@
+--  mmm  m     m  mmm    mmm    mmm   mmmmm   mmm
+-- "   # "m m m" #"  #  #   "  #" "#  # # #  #"  #
+-- m"""#  #m#m#  #""""   """m  #   #  # # #  #""""
+-- "mm"#   # #   "#mm"  "mmm"  "#m#"  # # #  "#mm"
+
 -- Libraries
 -- {{{
 
@@ -118,11 +123,12 @@ myawesomemenu = {
 }
 
 -- The main menu, containing all the others
-mymainmenu = awful.menu({ items = { { "awesome",   myawesomemenu, beautiful.awesome_icon },
-                                    { "arch",      xdgmenu },
+mymainmenu = awful.menu({ items = { { "arch",      xdgmenu },
+                                    { "awesome",   myawesomemenu, beautiful.awesome_icon },
                                     { "&firefox",  "firefox" },
                                     { "&leafpad",  "leafpad" },
-                                    { "&thunar",  "thunar" }
+                                    { "&midori",   "midori" },
+                                    { "&thunar",   "thunar" }
                                   }
                         })
 
@@ -356,14 +362,6 @@ end)
 
 client.connect_signal("focus",   function(c) c.border_color = beautiful.border_focus  end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
--- }}}
-
--- {{{ Autostart commands
---     will be executed when awesome starts/restarts
-
--- Refreshes the menu, based on installed apps
-awful.util.spawn("xdg_menu --format awesome >> ~/.config/awesome/xdgmenu.lua")
 
 -- }}}
 
