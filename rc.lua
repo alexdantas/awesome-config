@@ -128,6 +128,7 @@ mymainmenu = awful.menu({ items = { { "arch",      xdgmenu },
                                     { "&firefox",  "firefox" },
                                     { "&leafpad",  "leafpad" },
                                     { "&midori",   "midori" },
+                                    { "t&ilda",    "tilda" },
                                     { "&thunar",   "thunar" }
                                   }
                         })

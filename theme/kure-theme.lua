@@ -9,9 +9,9 @@ icons_dir  = "/home/kure/.config/awesome/theme/icons/"
 -- }}}
 theme = {}
 
-theme.font = "Monospaced 6"
+--theme.font = "Monospaced 6"
 --theme.font = "Ubuntu Mono 8"
-
+theme.font = "Fixed 8"
 -- {{{ Taskbar colors
 
 -- theme.bg_normal		= "#01050D"
