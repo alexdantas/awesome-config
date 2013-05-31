@@ -88,6 +88,17 @@ clientkeys = awful.util.table.join (
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
 
+
+    -- Controlling the volume via those special keys
+    awful.key({ }, "XF86AudioLowerVolume", function () couth.notifier:notify( couth.alsa:setVolume('Master','3dB-'))   end),
+    awful.key({ }, "XF86AudioRaiseVolume", function () couth.notifier:notify( couth.alsa:setVolume('Master','3dB+'))   end),
+    awful.key({ }, "XF86AudioMute",        function () couth.notifier:notify( couth.alsa:setVolume('Master','toggle')) end),
+
+    awful.key({ "Control" }, "XF86AudioLowerVolume", function () couth.notifier:notify( couth.alsa:setVolume('Headphone','3dB-'))   end),
+    awful.key({ "Control" }, "XF86AudioRaiseVolume", function () couth.notifier:notify( couth.alsa:setVolume('Headphone','3dB+'))   end),
+    awful.key({ "Control" }, "XF86AudioMute",        function () couth.notifier:notify( couth.alsa:setVolume('Headphone','toggle')) end),
+
+
     -- Minimize window
     awful.key({ modkey,           }, "-",
         function (c)
