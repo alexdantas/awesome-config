@@ -7,7 +7,9 @@
 -- http://git.sysphere.org/vicious/tree/README
 --
 -- Don't forget to dofile() this file and include this widget on the Wibox
-
+--
+-- Learn more about signals here:
+-- http://awesome.naquadah.org/wiki/Signals
 
 cpuwidget = awful.widget.graph()
 cpuwidget:set_width(30)
@@ -19,4 +21,11 @@ cpuwidget:set_scale(true)
 --cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
 
 vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 3)
+
+-- When someone clicks on me, notify current value
+cpuwidget:connect_signal("button::press",
+                         function ()
+                            naughty.notify({ title = "CPU Usage",
+                                             text  = "(there should be a way of knowing the current value on the vicious graph)" })
+                         end)
 
