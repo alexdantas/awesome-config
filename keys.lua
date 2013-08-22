@@ -56,6 +56,17 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
+
+    -- Special keys on my strange keyboard mapping to programs
+
+    awful.key({ }, "#180", function () awful.util.spawn("firefox") end), -- Home
+    awful.key({ }, "#163", function () awful.util.spawn("thunderbird") end), -- Mail
+
+    awful.key({ }, "#179", function () awful.util.spawn("banshee") end), -- Tools
+
+    awful.key({ }, "#148", function () awful.util.spawn("qalculate") end), -- Calculator
+
+
     -- I've never needed this
     -- awful.key({ modkey }, "x",
     --           function ()
@@ -76,7 +87,6 @@ globalkeys = awful.util.table.join(
 
     -- Let's do something with the Menu key
 --    awful.key({ }, "Menu", function () awful.util.spawn("xscreensaver-command -lock") end)
-
 )
 
 clientkeys = awful.util.table.join (
@@ -109,6 +119,12 @@ clientkeys = awful.util.table.join (
 
     -- Maximize window ('Shift' plus '=' equals '+')
     awful.key({ modkey, "Shift"   }, "=",
+        function (c)
+            c.maximized_horizontal = not c.maximized_horizontal
+            c.maximized_vertical   = not c.maximized_vertical
+        end),
+	
+    awful.key({ modkey, }, "a",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
@@ -163,4 +179,3 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 
 -- }}}
-

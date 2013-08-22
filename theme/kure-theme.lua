@@ -11,7 +11,9 @@ theme = {}
 
 --theme.font = "Monospaced 6"
 --theme.font = "Ubuntu Mono 8"
-theme.font = "Fixed 8"
+--theme.font = "Fixed 8"
+theme.font = "monospace normal 8"
+
 -- {{{ Taskbar colors
 
 -- theme.bg_normal		= "#01050D"
@@ -123,4 +125,3 @@ theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 theme.awesome_icon = icons_dir .. "awesome.png"
 
 return theme
-

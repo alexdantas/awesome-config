@@ -134,11 +134,13 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "arch",      xdgmenu },
                                     { "awesome",   myawesomemenu, beautiful.awesome_icon },
                                     { "&firefox",  "firefox" },
+                                    { "l&uakit",   "luakit" },
                                     { "&leafpad",  "leafpad" },
                                     { "&midori",   "midori" },
                                     { "t&ilda",    "tilda" },
                                     { "&thunar",   "thunar" },
-                                    { "t&hunderbird", "thunderbird"}
+                                    { "t&hunderbird", "thunderbird"},
+                                    { "&qbittorrent", "qbittorrent"}
                                   }
                         })
 
@@ -385,5 +387,3 @@ couth.CONFIG.ALSA_CONTROLS = {
 }
 
 -- }}}
-
-

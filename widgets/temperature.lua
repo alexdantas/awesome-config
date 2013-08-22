@@ -17,4 +17,17 @@ temperaturewidget:set_scale(true)
 
 vicious.register(temperaturewidget, vicious.widgets.thermal, "$1", 3, "thermal_zone0")
 
+-- Gets the output of my custom command that sends sensor
+-- informations on a nice way (sensors.rb).
+-- The source code is on my gist page (alexdantas).
+
+
+-- When someone clicks on me, notify current value
+temperaturewidget:connect_signal("button::press",
+                         function ()
+                            os.execute('notify-send Temperature `/home/kure/bin/sensors.rb`')
+--                            naughty.notify({ title = "Temperature",
+--                                             text  = "a"..sensors_output().."e" })
+                         end)
+
 
