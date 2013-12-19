@@ -7,9 +7,9 @@
 -- {{{
 
 vicious = require("vicious")
-gears = require("gears")
+gears   = require("gears")
 
-awful = require("awful")
+awful       = require("awful")
 awful.rules = require("awful.rules")
 
 -- TODO
@@ -72,7 +72,8 @@ end
 
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.init(config_dir .. "theme/kure-theme.lua")
+--beautiful.init(config_dir .. "theme/kure-theme.lua")
+beautiful.init(config_dir .. "theme/green-kure.lua")
 
 terminal   = "mrxvt"          -- was "x-terminal-emulator"
 editor     = "emacs -nw"      -- was os.getenv("EDITOR") or "editor"
@@ -159,6 +160,7 @@ dofile(config_dir .. "widgets/battery.lua")     -- batterywidget and batteryprog
 dofile(config_dir .. "widgets/textclock.lua")   -- mytextclock
 dofile(config_dir .. "widgets/cpu.lua")         -- cpuwidget
 dofile(config_dir .. "widgets/temperature.lua") -- temperaturewidget
+dofile(config_dir .. "widgets/ram.lua")         -- ramwidget
 
 -- }}}
 
@@ -248,6 +250,8 @@ for s = 1, screen.count() do
 
     -- MY CUSTOM WIDGEEETS
     right_layout:add(batterywidget)
+    right_layout:add(blank_space)
+    right_layout:add(ramwidget)
     right_layout:add(blank_space)
     right_layout:add(temperaturewidget)
     right_layout:add(blank_space)
@@ -386,4 +390,10 @@ couth.CONFIG.ALSA_CONTROLS = {
        'Headphone'
 }
 
+-- Autostart some applications every time Awesome is
+-- initialized.
+dofile(config_dir .. "autostart.lua")
+awful.util.spawn_with_shell("/home/kure/bin/run-once.sh unclutter -idle 2")
 -- }}}
+
+

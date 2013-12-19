@@ -1,4 +1,4 @@
--- kure theme based on the Default awesome theme
+-- GREEN kure theme
 -- Works only on Awesome 3.5!
 
 -- {{{ My Variables
@@ -19,7 +19,7 @@ theme.font = "monospace normal 8"
 
 -- theme.bg_normal		= "#01050D"
 --theme.bg_normal		= "#404040"
-theme.bg_normal		= "#1c1c1c"
+theme.bg_normal		= "#002000"
 
 -- theme.fg_normal		= "#3D7E84"
 theme.fg_normal		= "#E4E4E4"
@@ -27,8 +27,8 @@ theme.fg_normal		= "#E4E4E4"
 -- theme.bg_focus		= "#00355B"
 -- theme.fg_focus		= "#CCCCCC"
 --theme.bg_focus		= "#C4C4B7"
-theme.bg_focus		= "#444444"
-theme.fg_focus		= "#E4E4E4"
+theme.bg_focus		= "#809a70"
+theme.fg_focus		= "#000000"
 
 theme.bg_urgent		= "#501913"
 theme.fg_urgent		= "#DC8D84"
@@ -38,10 +38,8 @@ theme.fg_minimize	= "#ffffff"
 
 -- Border with same color as the background for the win
 theme.border_width	= "1"
-theme.border_normal = "#1C1C1C"
---theme.border_normal = "#01050D"
---theme.border_focus	= "#01050D"
-theme.border_focus	= "#1C1C1C"
+theme.border_normal = theme.bg_normal
+theme.border_focus  = theme.bg_normal
 theme.border_marked = "#8b0000"
 
 -- }}{
