@@ -18,7 +18,8 @@ theme = {}
 --theme.font = "Monospaced 6"
 --theme.font = "Ubuntu Mono 10"
 --theme.font = "Fixed 8"
-theme.font = "monospace normal 8"
+--theme.font = "monospace normal 12"
+theme.font = "Inconsolata 10"
 
 -- {{{ Taskbar colors
 
