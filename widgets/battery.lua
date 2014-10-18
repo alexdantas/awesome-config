@@ -17,8 +17,8 @@ batterywidget.border_color = beautiful.fg_normal
 vicious.register(
    batterywidget,       -- widget table, created with widget()
    vicious.widgets.bat, -- available widget from vicious
-   " <span color='#6698FF'>$1 $2% <span color='#50EBEC'>$3</span></span> ",
-   5,                   -- refresh interval (seconds)
+   " <span color='".. beautiful.bg_focus .. "'>$1 <span color='#50EBEC'>$2% $3</span></span> ",
+   1,                   -- refresh interval (seconds)
    "BAT0"               -- optional argument, battery ID
 )
 

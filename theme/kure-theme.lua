@@ -1,5 +1,10 @@
 -- kure theme based on the Default awesome theme
 -- Works only on Awesome 3.5!
+--
+-- Using the `beautiful` theme engine
+--
+-- You can add as many variables as you wish and access them by using
+-- `beautiful.variable` in your rc.lua
 
 -- {{{ My Variables
 
@@ -11,7 +16,7 @@ icons_dir  = "/home/kure/.config/awesome/theme/icons/"
 theme = {}
 
 --theme.font = "Monospaced 6"
---theme.font = "Ubuntu Mono 8"
+--theme.font = "Ubuntu Mono 10"
 --theme.font = "Fixed 8"
 theme.font = "monospace normal 8"
 
@@ -19,16 +24,14 @@ theme.font = "monospace normal 8"
 
 -- theme.bg_normal		= "#01050D"
 --theme.bg_normal		= "#404040"
-theme.bg_normal		= "#1c1c1c"
+-- theme.bg_normal		= "#000020"
+theme.bg_normal		= "#002B36"
 
 -- theme.fg_normal		= "#3D7E84"
 theme.fg_normal		= "#E4E4E4"
 
--- theme.bg_focus		= "#00355B"
--- theme.fg_focus		= "#CCCCCC"
---theme.bg_focus		= "#C4C4B7"
-theme.bg_focus		= "#444444"
-theme.fg_focus		= "#E4E4E4"
+theme.bg_focus		= "#535d6c"
+theme.fg_focus		= "#ffffff"
 
 theme.bg_urgent		= "#501913"
 theme.fg_urgent		= "#DC8D84"
@@ -36,15 +39,13 @@ theme.fg_urgent		= "#DC8D84"
 theme.bg_minimize	= "#6D6D6D"
 theme.fg_minimize	= "#ffffff"
 
--- Border with same color as the background for the win
+-- Borders on all Windows
 theme.border_width	= "1"
-theme.border_normal = "#1C1C1C"
---theme.border_normal = "#01050D"
---theme.border_focus	= "#01050D"
-theme.border_focus	= "#1C1C1C"
+theme.border_normal = "#000020"
+theme.border_focus	= "#000020"
 theme.border_marked = "#8b0000"
 
--- }}{
+-- }}
 
 -- There are other variable sets
 -- overriding the default one when
@@ -71,36 +72,39 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 theme.menu_submenu_icon = icons_dir .. "arrow-right.png"
 theme.menu_height		= "18"
 theme.menu_width		= "150"
+theme.menu_border_color = theme.bg_focus
 theme.menu_border_width = "1"
 
 -- }}}
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
+-- {{{ Widget settings
+-- These are my custom variables, to be accessed
+-- externally
+
+theme.bg_widget = theme.bg_focus
+
+-- }}}
 
 -- {{{ Titlebar
 
 -- Define the image to load
-theme.titlebar_close_button_normal = "/usr/share/awesome/themes/default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = "/usr/share/awesome/themes/default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = "/usr/share/awesome/themes/zenburn/titlebar/close_normal.png"
+theme.titlebar_close_button_focus  = "/usr/share/awesome/themes/zenburn/titlebar/close_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive	= "/usr/share/awesome/themes/default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = "/usr/share/awesome/themes/default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive	= "/usr/share/awesome/themes/zenburn/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive	 = "/usr/share/awesome/themes/default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = "/usr/share/awesome/themes/default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive	 = "/usr/share/awesome/themes/zenburn/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = "/usr/share/awesome/themes/default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = "/usr/share/awesome/themes/default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active	 = "/usr/share/awesome/themes/default/titlebar/floating_focus_active.png"
-
+theme.titlebar_floating_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive  = "/usr/share/awesome/themes/zenburn/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active = "/usr/share/awesome/themes/zenburn/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active	 = "/usr/share/awesome/themes/zenburn/titlebar/floating_focus_active.png"
 -- }}}
 
 -- {{{ Wallpaper
@@ -129,3 +133,4 @@ theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 theme.awesome_icon = icons_dir .. "awesome.png"
 
 return theme
+

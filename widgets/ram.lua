@@ -8,7 +8,7 @@
 
 ramwidget = awful.widget.graph()
 ramwidget:set_width(30)
-ramwidget:set_background_color("#494B4F")
+ramwidget:set_background_color(beautiful.bg_widget)
 ramwidget:set_color("#ABFF56")
 ramwidget:set_scale(true)
 
@@ -16,4 +16,20 @@ ramwidget:set_scale(true)
 --ramwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
 
 vicious.register(ramwidget, vicious.widgets.mem, "$1", 3)
+
+-- This is my extension to the widget,
+-- allowing you to hover your mouse and see the current ram usage.
+--
+-- It relies on my local script that gets the temperature from
+-- the output of `sensors -u`.
+--
+ramwidget_t = awful.tooltip({
+	  objects = { ramwidget },
+	  timer_function = function()
+		 local output = awful.util.pread("/home/kure/bin/ram.rb")
+
+		 -- Removing "\n" so the Wibox is pretty
+		 return string.sub(output, 1, -2)
+	  end,
+})
 

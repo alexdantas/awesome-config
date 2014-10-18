@@ -13,7 +13,7 @@
 
 cpuwidget = awful.widget.graph()
 cpuwidget:set_width(30)
-cpuwidget:set_background_color("#494B4F")
+cpuwidget:set_background_color(beautiful.bg_widget)
 cpuwidget:set_color("#FF5656")
 cpuwidget:set_scale(true)
 
@@ -22,10 +22,19 @@ cpuwidget:set_scale(true)
 
 vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 3)
 
--- When someone clicks on me, notify current value
-cpuwidget:connect_signal("button::press",
-                         function ()
-                            naughty.notify({ title = "CPU Usage",
-                                             text  = "(there should be a way of knowing the current value on the vicious graph)" })
-                         end)
+-- This is my extension to the widget,
+-- allowing you to hover your mouse and see the current cpu usage.
+--
+-- It relies on my local script that gets the temperature from
+-- the output of `sensors -u`.
+--
+cpuwidget_t = awful.tooltip({
+	  objects = { cpuwidget },
+	  timer_function = function()
+		 local output = awful.util.pread("/home/kure/bin/cpu.sh")
+
+		 -- Removing "\n" so the Wibox is pretty
+		 return string.sub(output, 1, -2)
+	  end,
+})
 

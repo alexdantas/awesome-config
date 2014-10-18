@@ -70,18 +70,22 @@ end
 
 -- {{{ Variable definitions
 
--- Themes define colours, icons, and wallpapers
+-- Awesome Theme (define colors, icons, and wallpapers)
+--
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
---beautiful.init(config_dir .. "theme/kure-theme.lua")
-beautiful.init(config_dir .. "theme/green-kure.lua")
+beautiful.init(config_dir .. "theme/kure-theme.lua")
 
-terminal   = "mrxvt"          -- was "x-terminal-emulator"
+terminal   = "urxvt"          -- was "mrxvt" and was "x-terminal-emulator"
 editor     = "emacs -nw"      -- was os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
-modkey     = "Mod4"
+
+-- The Mod Key used on Awesome.
+-- Mod4 is the "Windows"/"Super" key
+-- Mod1 is the Alt key
+modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts =
+layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -137,7 +141,6 @@ mymainmenu = awful.menu({ items = { { "arch",      xdgmenu },
                                     { "&firefox",  "firefox" },
                                     { "l&uakit",   "luakit" },
                                     { "&leafpad",  "leafpad" },
-                                    { "&midori",   "midori" },
                                     { "t&ilda",    "tilda" },
                                     { "&thunar",   "thunar" },
                                     { "t&hunderbird", "thunderbird"},
@@ -161,6 +164,7 @@ dofile(config_dir .. "widgets/textclock.lua")   -- mytextclock
 dofile(config_dir .. "widgets/cpu.lua")         -- cpuwidget
 dofile(config_dir .. "widgets/temperature.lua") -- temperaturewidget
 dofile(config_dir .. "widgets/ram.lua")         -- ramwidget
+local pomodoro = require ("pomodoro")
 
 -- }}}
 
@@ -234,7 +238,7 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "bottom", height = "15", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = "15", screen = s })
 
     -- Add widgets to the wibox - order matters
     --
@@ -257,6 +261,7 @@ for s = 1, screen.count() do
     right_layout:add(blank_space)
     right_layout:add(cpuwidget)
     right_layout:add(mytextclock)
+	right_layout:add(pomodoro.icon_widget)
 
     -- Don't need them layout boxes!
 --    right_layout:add(mylayoutbox[s])
@@ -288,18 +293,28 @@ dofile(config_dir .. "keys.lua")
 -- {{{ Rules
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
+    {
+	   rule = { },
+	   properties = {
+		  border_width = beautiful.border_width,
+		  border_color = beautiful.border_normal,
+		  focus        = awful.client.focus.filter,
+		  keys         = clientkeys,
+		  buttons      = clientbuttons,
+
+		  -- This magic thing makes urxvt completely
+		  -- maximized on the screen (no gaps).
+		  -- Source:
+		  -- https://awesome.naquadah.org/wiki/FAQ#How_to_remove_gaps_between_windows.3F
+		  size_hints_honor = false } },
+
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -331,6 +346,7 @@ client.connect_signal("manage", function (c, startup)
 
     -- Enable/disable titlebar
     local titlebars_enabled = false
+
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
         -- buttons for the titlebar
         local buttons = awful.util.table.join(
@@ -374,6 +390,11 @@ client.connect_signal("manage", function (c, startup)
 
         awful.titlebar(c):set_widget(layout)
     end
+
+	-- Automatically maximizing windows on startup
+    --c.maximized_horizontal = true
+    --c.maximized_vertical   = true
+
 end)
 
 client.connect_signal("focus",   function(c) c.border_color = beautiful.border_focus  end)
@@ -383,6 +404,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- {{{ Misc. stuff
 
+-- Initializing the Awesome Pomodoro Widget
+pomodoro.init()
+
 -- By default, the volume controller displays nonexistant devices.
 -- Here I specify which one of them I will be able to control.
 couth.CONFIG.ALSA_CONTROLS = {
@@ -390,10 +414,13 @@ couth.CONFIG.ALSA_CONTROLS = {
        'Headphone'
 }
 
--- Autostart some applications every time Awesome is
--- initialized.
+-- Autostart some applications and source config files
+-- every time Awesome is initialized.
 dofile(config_dir .. "autostart.lua")
-awful.util.spawn_with_shell("/home/kure/bin/run-once.sh unclutter -idle 2")
--- }}}
+awful.util.spawn_with_shell("source /home/kure/.xinitrc")
 
+-- Greets with a welcome message and fortune
+awful.util.spawn_with_shell("/home/kure/bin/fortune-x.rb")
+
+-- End of my Awesome config file
 
